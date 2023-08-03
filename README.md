@@ -5,7 +5,7 @@ Proof of concept code in Powershell from downloading indicators from MISP and se
 ## MISP2Sentinel.ps1
 
 ```powershell
-./MISP2Sentinel.ps1 -MISPKey 12345678910 -MISPURL misp.local -SentinelOneURL sentinelone.dummy.net -SentinelOneAPIKey 123812381238 -ValidUntilDays 14
+./MISP2Sentinel.ps1 -MISPKey 12345678910 -MISPURL misp.local -SentinelOneURL sentinelone.dummy.net -SentinelOneAPIKey 123812381238 -ValidUntilDays 14 -SiteID 123123123123
 ```
 
 Consist of the following functions:
@@ -37,7 +37,7 @@ Takes the output from `Get-Events` and parses them to work with SentinelOne:
 
 ### `Send-ToSentinelOne`
 
-Takes the `SentinelOneURL` and `SentinelOneAPIKey` as input along with the `$ParsedEvents` from the `Parse-Events` function.
+Takes the `SentinelOneURL` and `SentinelOneAPIKey` as input along with the `$ParsedEvents` from the `Parse-Events` function. It also needs a `$SiteId`, but this can also be changed to group or account id. Just for filtering which groups to send the data to.
 
 ```powershell
 Send-ToSentinelOne -ParsedEvents $ParsedEvents -SentinelOneURL sentinelone.dummy.net -SentinelOneAPIKey 123812381238
